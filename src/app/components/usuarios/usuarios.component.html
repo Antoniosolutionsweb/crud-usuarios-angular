@@ -1,0 +1,93 @@
+<nav class="navbar navbar-ligth bg-primary">
+    <div class="container-fluid">
+        <h2 class="blanco">Crud de usuarios</h2>
+        <div class="d-flex">
+            <button (click)="clickAddUsuario()" class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-circle-plus"></i></button>
+        </div>
+    </div>
+</nav>
+<div class=" m-5 table-responsive">
+    <table class="table table-sm" >
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col col-xs-12">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Telefono</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarioData">
+                <td scope="row">{{usuario.id}}</td>
+                <td scope="row">{{usuario.nombre}}</td>
+                <td scope="row">{{usuario.apellido}}</td>
+                <td scope="row">{{usuario.edad}}</td>
+                <td scope="row">{{usuario.email}}</td>
+                <td scope="row">{{usuario.telefono}}</td>
+                <td scope="row">
+                    <button (click)="onEdit(usuario)"  class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-user-pen"></i></button>
+                    <button (click)="deleteUsuario(usuario)" class="btn btn-danger "><i class="fa-solid fa-trash"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModallabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModal">Usuarios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" formControlName="nombre" class="form-control" placeholder="Ingrese el nombre del usuario">
+                            <span class="form-text text-danger" *ngIf="campoValido('nombre')">
+                               El  nombre es obligatorio
+                            </span>
+
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Apellido</label>
+                        <input type="text" formControlName="apellido"  class="form-control" placeholder="Ingrese el apellido del usuario">
+                        <span class="form-text text-danger" *ngIf="campoValido('apellido')">
+                            El  Apelido es obligatorio
+                         </span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">edad</label>
+                        <input type="number" formControlName="edad"  class="form-control" placeholder="Ingrese edad del usuario" >
+                        <span class="form-text text-danger" *ngIf="campoValido('edad')">
+                            El Usuario debe de ser mayor de Edad
+                         </span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Correo</label>
+                        <input type="email" formControlName="email"  class="form-control" placeholder="Ingrese el email  del usuario">
+                        <span class="form-text text-danger" *ngIf="campoValido('email')">
+                            Debe ingresar un correo valido
+                         </span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Telefono</label>
+                        <input type="number" formControlName="telefono"  class="form-control" placeholder="Ingrese el numero telefonico del usuario">
+                        <span class="form-text text-danger" *ngIf="campoValido('telefono')">
+                            El numero Telefonico es obligatorio
+                         </span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancelar" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" *ngIf="showAdd" (click)="postUsuarioDetalle()" [disabled]="formValue.invalid" class="btn btn-primary">Gurdar</button>
+                <button type="button" *ngIf="showApdate" (click)="updateUsuarioDetalle()" class="btn btn-primary">Actualizar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

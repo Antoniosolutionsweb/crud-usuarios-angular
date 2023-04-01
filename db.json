@@ -1,0 +1,20 @@
+{
+  "usuarios": [
+    {
+      "id": 9,
+      "nombre": "sfsdfs",
+      "apellido": "sdfsf",
+      "email": "ajrodriguez@gmil.com",
+      "edad": 18,
+      "telefono": 234234
+    },
+    {
+      "id": 10,
+      "nombre": "antonio",
+      "apellido": "rodriguez",
+      "email": "ajrodriguez1196@gmil.com",
+      "edad": 18,
+      "telefono": 4127335291
+    }
+  ]
+}
